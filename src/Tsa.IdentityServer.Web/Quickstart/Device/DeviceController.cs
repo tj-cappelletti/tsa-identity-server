@@ -16,8 +16,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Tsa.IdentityServer.Web.Quickstart.Consent;
 
-namespace IdentityServerHost.Quickstart.UI
+namespace Tsa.IdentityServer.Web.Quickstart.Device
 {
     [Authorize]
     [SecurityHeaders]

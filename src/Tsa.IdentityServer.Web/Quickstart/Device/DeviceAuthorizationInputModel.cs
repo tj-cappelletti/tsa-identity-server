@@ -2,7 +2,9 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-namespace IdentityServerHost.Quickstart.UI
+using Tsa.IdentityServer.Web.Quickstart.Consent;
+
+namespace Tsa.IdentityServer.Web.Quickstart.Device
 {
     public class DeviceAuthorizationInputModel : ConsentInputModel
     {
