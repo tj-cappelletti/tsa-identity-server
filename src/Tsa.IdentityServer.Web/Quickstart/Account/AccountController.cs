@@ -42,14 +42,11 @@ namespace Tsa.IdentityServer.Web.Quickstart.Account
             IEventService events,
             TestUserStore users = null)
         {
-            // if the TestUserStore is not in DI, then we'll just use the global users collection
-            // this is where you would plug in your own custom identity management library (e.g. ASP.NET Identity)
-            _users = users ?? new TestUserStore(TestUsers.Users);
-
             _interaction = interaction;
             _clientStore = clientStore;
             _schemeProvider = schemeProvider;
             _events = events;
+            _users = users;
         }
 
         /// <summary>
