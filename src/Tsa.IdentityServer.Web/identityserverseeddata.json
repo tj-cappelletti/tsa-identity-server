@@ -1,0 +1,144 @@
+{
+    "Clients": [
+        {
+            "Enabled": true,
+            "ClientId": "tsa.coding.submissions.web",
+            "ProtocolType": "oidc",
+            "RequireClientSecret": true,
+            "ClientName": "TSA Coding Submissions Web UI",
+            "ClientSecrets": [
+                {
+                    "Description": "a673bbae-71e4-4962-a623-665689c4dd34",
+                    "Value": "",
+                    "Expiration": null,
+                    "Type": "SharedSecret"
+                }
+            ],
+            "RequireConsent": false,
+            "RequirePkce": true,
+            "AllowPlainTextPkce": false,
+            "AllowOfflineAccess": false,
+            "AllowedScopes": [
+                "openid",
+                "profile",
+                "tsa.coding.submissions.read",
+                "tsa.coding.submissions.create"
+            ]
+        },
+        {
+            "Enabled": true,
+            "ClientId": "tsa.submissions.web",
+            "ProtocolType": "oidc",
+            "RequireClientSecret": true,
+            "ClientName": "TSA Submissions Web UI",
+            "ClientSecrets": [
+                {
+                    "Description": "945931d5-6100-4129-b2c0-d9e9b34d1828",
+                    "Value": "",
+                    "Expiration": null,
+                    "Type": "SharedSecret"
+                }
+            ],
+            "RequireConsent": false,
+            "RequirePkce": true,
+            "AllowPlainTextPkce": false,
+            "AllowOfflineAccess": false,
+            "AllowedScopes": [
+                "openid",
+                "profile",
+                "submissions.read",
+                "submissions.create"
+            ]
+        }
+    ],
+    "ApiResources": [
+        {
+            "Scopes": [
+                "tsa.submissions.read",
+                "tsa.submissions.create"
+            ],
+            "Enabled": true,
+            "Name": "tsa.submissions",
+            "DisplayName": "TSA Submissions API"
+        },
+        {
+            "Scopes": [
+                "tsa.coding.submissions.read",
+                "tsa.coding.submissions.create"
+            ],
+            "Enabled": true,
+            "Name": "tsa.coding.submissions",
+            "DisplayName": "TSA Coding Submissions API"
+        }
+    ],
+    "ApiScopes": [
+        {
+            "Name": "tsa.submissions.read",
+            "DisplayName": "Display/read submissions"
+        },
+        {
+            "Name": "tsa.submissions.create",
+            "DisplayName": "Create submissions"
+        },
+        {
+            "Name": "tsa.coding.submissions.read",
+            "DisplayName": "Display/read coding submissions"
+        },
+        {
+            "Name": "tsa.coding.submissions.create",
+            "DisplayName": "Create coding submissions"
+        }
+    ],
+    "IdentityUsers": [
+        {
+            "Id": "9999-001",
+            "UserName": "9999-001",
+            "Email": "student1@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "Pa$$w0rd"
+        },
+        {
+            "Id": "9999-002",
+            "UserName": "9999-002",
+            "Email": "student2@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "Pa$$w0rd"
+        },
+        {
+            "Id": "judge01",
+            "UserName": "judge01",
+            "Email": "judge01@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "Pa$$w0rd"
+        },
+        {
+            "Id": "judge02",
+            "UserName": "judge02",
+            "Email": "judge02@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "Pa$$w0rd"
+        }
+    ],
+    "IdentityUserRoles": [
+        {
+            "UserId": "9999-001",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "9999-002",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "judge01",
+            "RoleName": "judge"
+        },
+        {
+            "UserId": "judge02",
+            "RoleName": "judge"
+        }
+    ],
+    "Roles": [
+        "judge",
+        "participant"
+    ]
+}
