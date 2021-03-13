@@ -28,7 +28,7 @@ This project is released uner the [MIT License][mit-license].
 <!-- REPO LINKS -->
 [cg]: CONTRIBUTING.md "Contributing Guidelines"
 [cod]: CODE_OF_CONDUCT.md "Code of Conduct"
-[mit-license]: LICENSE "MIT License"
+[mit-license]: LICENSE.md "MIT License"
 
 <!-- EXTERNAL LINKS -->
 [identityserver4]: https://github.com/IdentityServer/IdentityServer4 "IdentityServer 4 repo"
