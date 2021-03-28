@@ -84,3 +84,20 @@ jobs:
           name: identity-server
           path: ${{ runner.temp }}/Tsa.IdentityServer.Web
           if-no-files-found: error
+
+  buildDockerContainers:
+    name: Build Docker Containers
+    needs: [semver, buildApplciations]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build tsa/coding/submissions/identity Image
+        run: |
+          docker build \
+            --tag $DOCKER_REPO/tsa/coding/submissions/identity:${{ needs.semver.outputs.semVer }} \
+            --tag $DOCKER_REPO/tsa/coding/submissions/identity:${{ needs.semver.outputs.releaseLabel }} \
+            --tag $DOCKER_REPO/tsa/coding/submissions/identity:${{ needs.semver.outputs.majorMinorReleaseLabel }} \
+            --tag $DOCKER_REPO/tsa/coding/submissions/identity:${{ needs.semver.outputs.majorReleaseLabel }} \
+            --file src/Tsa.IdentityServer.Web/Dockerfile \
+            src/
