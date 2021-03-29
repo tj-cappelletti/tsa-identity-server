@@ -13,9 +13,9 @@ namespace Tsa.IdentityServer.Web
 {
     public class Startup
     {
-        private const string CreateDatabaseArgumentKey = "createDb";
-        private const string SeedDatabaseSourceKey = "dbSeedSource";
-        private const string SeedDatabaseLocationKey = "dbSeedLocation";
+        private const string CreateDatabaseArgumentKey = "CREATE_DB";
+        private const string DatabaseSeedSourceKey = "DB_SEED_SOURCE";
+        private const string DatabaseSeedLocationKey = "DB_SEED_SOURCE_LOCATION";
 
         public IConfiguration Configuration { get; set; }
 
@@ -80,8 +80,8 @@ namespace Tsa.IdentityServer.Web
         private void InitializeDatabase(IApplicationBuilder app)
         {
             var createDb = Configuration.GetValue<bool>(CreateDatabaseArgumentKey);
-            var databaseSeedSourceValue = Configuration[SeedDatabaseSourceKey];
-            var databaseSeedLocation = Configuration[SeedDatabaseLocationKey];
+            var databaseSeedLocation = Configuration[DatabaseSeedLocationKey];
+            var databaseSeedSourceValue = Configuration[DatabaseSeedSourceKey];
 
             ConfigurationSource databaseSeedSource;
 

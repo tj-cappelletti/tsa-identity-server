@@ -5,6 +5,8 @@
     <AssemblyTitle>TSA Identity Server Web Assembly</AssemblyTitle>
     <Description>This assembly provides an OpenID Connect and OAuth 2 services for all TSA applications that require authentication and authorization.</Description>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <UserSecretsId>9ed79e40-765f-4600-88e4-39d694f8041f</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +21,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="5.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="Serilog" Version="2.10.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="4.0.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
