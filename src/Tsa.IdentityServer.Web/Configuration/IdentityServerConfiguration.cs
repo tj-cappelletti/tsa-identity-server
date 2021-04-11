@@ -55,7 +55,7 @@ namespace Tsa.IdentityServer.Web.Configuration
         {
             foreach (var apiResource in apiResources)
             {
-                if (_configurationDbContext.ApiResources.Any(ar=>ar.Name == apiResource.Name)) continue;
+                if (_configurationDbContext.ApiResources.Any(ar => ar.Name == apiResource.Name)) continue;
 
                 _logger.LogInformation("Creating IdentityServer API Resource {apiResource}", apiResource.Name);
 
@@ -93,6 +93,26 @@ namespace Tsa.IdentityServer.Web.Configuration
             }
 
             _configurationDbContext.SaveChanges();
+        }
+
+        private void AddIdentityServerIdentityResources()
+        {
+            var openIdIdentityResource = new IdentityResources.OpenId().ToEntity();
+            var profileIdentityResource = new IdentityResources.Profile().ToEntity();
+            var emailIdentityResource = new IdentityResources.Email().ToEntity();
+            var roleIdentityResource = new IdentityResource("role", new[] { "role" }).ToEntity();
+
+            if (!_configurationDbContext.IdentityResources.Any(ir => ir.Name == openIdIdentityResource.Name))
+                _configurationDbContext.IdentityResources.Add(openIdIdentityResource);
+
+            if (!_configurationDbContext.IdentityResources.Any(ir => ir.Name == profileIdentityResource.Name))
+                _configurationDbContext.IdentityResources.Add(profileIdentityResource);
+
+            if (!_configurationDbContext.IdentityResources.Any(ir => ir.Name == emailIdentityResource.Name))
+                _configurationDbContext.IdentityResources.Add(emailIdentityResource);
+
+            if (!_configurationDbContext.IdentityResources.Any(ir => ir.Name == openIdIdentityResource.Name))
+                _configurationDbContext.IdentityResources.Add(roleIdentityResource);
         }
 
         private void AddIdentityServerRoles(IEnumerable<string> roles)
@@ -208,6 +228,7 @@ namespace Tsa.IdentityServer.Web.Configuration
             AddIdentityServerApiResources(identityServerSeedData.ApiResources);
             AddIdentityServerApiScopes(identityServerSeedData.ApiScopes);
             AddIdentityServerClients(identityServerSeedData.Clients);
+            AddIdentityServerIdentityResources();
             AddIdentityServerRoles(identityServerSeedData.Roles);
             AddIdentityServerUsers(identityServerSeedData.IdentityUsers);
             AddIdentityServerUserRoles(identityServerSeedData.IdentityUserRoles);

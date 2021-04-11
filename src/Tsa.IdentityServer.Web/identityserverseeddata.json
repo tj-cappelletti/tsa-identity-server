@@ -16,8 +16,15 @@
             ],
             "RequireConsent": false,
             "RequirePkce": true,
+            "RedirectUris": [
+                "https://submissions.tsa.local:44300/login",
+                "https://submissions.tsa.local:44300/signin-oidc"
+            ],
             "AllowPlainTextPkce": false,
             "AllowOfflineAccess": false,
+            "AllowedGrantTypes": [
+                "authorization_code"
+            ],
             "AllowedScopes": [
                 "openid",
                 "profile",
@@ -43,6 +50,9 @@
             "RequirePkce": true,
             "AllowPlainTextPkce": false,
             "AllowOfflineAccess": false,
+            "AllowedGrantTypes": [
+                "authorization_code"
+            ],
             "AllowedScopes": [
                 "openid",
                 "profile",
