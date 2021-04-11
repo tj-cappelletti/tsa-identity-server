@@ -113,6 +113,8 @@ namespace Tsa.IdentityServer.Web.Configuration
 
             if (!_configurationDbContext.IdentityResources.Any(ir => ir.Name == openIdIdentityResource.Name))
                 _configurationDbContext.IdentityResources.Add(roleIdentityResource);
+                
+            _configurationDbContext.SaveChanges();
         }
 
         private void AddIdentityServerRoles(IEnumerable<string> roles)
