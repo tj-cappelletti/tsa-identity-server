@@ -28,6 +28,7 @@
             "AllowedScopes": [
                 "openid",
                 "profile",
+                "role",
                 "tsa.coding.submissions.read",
                 "tsa.coding.submissions.create"
             ]
@@ -56,6 +57,7 @@
             "AllowedScopes": [
                 "openid",
                 "profile",
+                "role",
                 "submissions.read",
                 "submissions.create"
             ]
