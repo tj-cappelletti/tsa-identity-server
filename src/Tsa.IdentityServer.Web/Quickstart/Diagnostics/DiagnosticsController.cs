@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace Tsa.IdentityServer.Web.Quickstart.Diagnostics
 {
@@ -14,10 +15,19 @@ namespace Tsa.IdentityServer.Web.Quickstart.Diagnostics
     [Authorize]
     public class DiagnosticsController : Controller
     {
+        private readonly IConfiguration _configuration;
+
+        public DiagnosticsController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public async Task<IActionResult> Index()
         {
+            var dockerContainer = _configuration["DOCKER_CONTAINER"] != null && _configuration["DOCKER_CONTAINER"] == "Y";
+
             var localAddresses = new string[] { "127.0.0.1", "::1", HttpContext.Connection.LocalIpAddress.ToString() };
-            if (!localAddresses.Contains(HttpContext.Connection.RemoteIpAddress.ToString()))
+            if (!localAddresses.Contains(HttpContext.Connection.RemoteIpAddress.ToString()) && !dockerContainer)
             {
                 return NotFound();
             }
