@@ -2,7 +2,7 @@
     "Clients": [
         {
             "Enabled": true,
-            "ClientId": "tsa.coding.submissions.web",
+            "ClientId": "tsa.submissions.coding.web",
             "ProtocolType": "oidc",
             "RequireClientSecret": true,
             "ClientName": "TSA Coding Submissions Web UI",
@@ -17,8 +17,8 @@
             "RequireConsent": false,
             "RequirePkce": true,
             "RedirectUris": [
-                "https://submissions.tsa.local:44300/login",
-                "https://submissions.tsa.local:44300/signin-oidc"
+                "https://tsa-submissions.azurewebsites.net//login",
+                "https://tsa-submissions.azurewebsites.net//signin-oidc"
             ],
             "AllowPlainTextPkce": false,
             "AllowOfflineAccess": false,
@@ -29,8 +29,8 @@
                 "openid",
                 "profile",
                 "role",
-                "tsa.coding.submissions.read",
-                "tsa.coding.submissions.create"
+                "tsa.submissions.coding.read",
+                "tsa.submissions.coding.create"
             ]
         },
         {
@@ -75,11 +75,11 @@
         },
         {
             "Scopes": [
-                "tsa.coding.submissions.read",
-                "tsa.coding.submissions.create"
+                "tsa.submissions.coding.read",
+                "tsa.submissions.coding.create"
             ],
             "Enabled": true,
-            "Name": "tsa.coding.submissions",
+            "Name": "tsa.submissions.coding",
             "DisplayName": "TSA Coding Submissions API"
         }
     ],
@@ -93,11 +93,11 @@
             "DisplayName": "Create submissions"
         },
         {
-            "Name": "tsa.coding.submissions.read",
+            "Name": "tsa.submissions.coding.read",
             "DisplayName": "Display/read coding submissions"
         },
         {
-            "Name": "tsa.coding.submissions.create",
+            "Name": "tsa.submissions.coding.create",
             "DisplayName": "Create coding submissions"
         }
     ],
@@ -129,7 +129,204 @@
             "Email": "judge02@tsa.local",
             "EmailConfirmed": true,
             "PasswordHash": "Pa$$w0rd"
+        },
+        {
+            "Id": "2004-901",
+            "UserName": "2004-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2005-901",
+            "UserName": "2005-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2008-901",
+            "UserName": "2008-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2009-901",
+            "UserName": "2009-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2009-902",
+            "UserName": "2009-902",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2009-903",
+            "UserName": "2009-903",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2009-904",
+            "UserName": "2009-904",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2013-901",
+            "UserName": "2013-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2043-901",
+            "UserName": "2043-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2057-901",
+            "UserName": "2057-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2059-901",
+            "UserName": "2059-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2061-901",
+            "UserName": "2061-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2061-902",
+            "UserName": "2061-902",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2063-901",
+            "UserName": "2063-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2078-901",
+            "UserName": "2078-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2082-901",
+            "UserName": "2082-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2084-901",
+            "UserName": "2084-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2087-901",
+            "UserName": "2087-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2089-901",
+            "UserName": "2089-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2098-901",
+            "UserName": "2098-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2111-901",
+            "UserName": "2111-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2152-902",
+            "UserName": "2152-902",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2194-901",
+            "UserName": "2194-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2196-901",
+            "UserName": "2196-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2208-901",
+            "UserName": "2208-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2214-901",
+            "UserName": "2214-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2216-901",
+            "UserName": "2216-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
+        },
+        {
+            "Id": "2218-901",
+            "UserName": "2218-901",
+            "Email": "user@tsa.local",
+            "EmailConfirmed": true,
+            "PasswordHash": "pa-TSA-2021"
         }
+
     ],
     "IdentityUserRoles": [
         {
