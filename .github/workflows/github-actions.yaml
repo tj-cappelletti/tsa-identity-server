@@ -102,11 +102,11 @@ jobs:
             --file src/Tsa.IdentityServer.Web/Dockerfile \
             src/
 
-      - name: Azure CLI Login
-        uses: azure/login@v1
-        if: ${{ github.event_name != 'pull_request' }}
-        with:
-          creds: ${{ secrets.AZURE_ACR_CREDENTIALS }}
+      #- name: Azure CLI Login
+      #  uses: azure/login@v1
+      #  if: ${{ github.event_name != 'pull_request' }}
+      #  with:
+      #    creds: ${{ secrets.AZURE_ACR_CREDENTIALS }}
 
       #- name: Docker Login
       #  uses: azure/docker-login@v1
