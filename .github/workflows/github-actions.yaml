@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOCKER_REPO: webstorm.azurecr.io
+  DOCKER_REPO: ghcr.io/${{ github.actor }}
 
 jobs:
   semver:
@@ -102,19 +102,27 @@ jobs:
             --file src/Tsa.IdentityServer.Web/Dockerfile \
             src/
 
-      - name: Azure CLI Login
-        uses: azure/login@v1
-        if: ${{ github.event_name != 'pull_request' }}
-        with:
-          creds: ${{ secrets.AZURE_ACR_CREDENTIALS }}
+      #- name: Azure CLI Login
+      #  uses: azure/login@v1
+      #  if: ${{ github.event_name != 'pull_request' }}
+      #  with:
+      #    creds: ${{ secrets.AZURE_ACR_CREDENTIALS }}
 
-      - name: Docker Login
-        uses: azure/docker-login@v1
+      #- name: Docker Login
+      #  uses: azure/docker-login@v1
+      #  if: ${{ github.event_name != 'pull_request' }}
+      #  with:
+      #    login-server: ${{ env.DOCKER_REPO }}
+      #    username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
+      #    password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+          
+      - name: Docker Login to GHCR
+        uses: docker/login-action@v1
         if: ${{ github.event_name != 'pull_request' }}
         with:
-          login-server: ${{ env.DOCKER_REPO }}
-          username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
-          password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Push tsa/coding/submissions/identity Image
         if: ${{ github.event_name != 'pull_request' }}
