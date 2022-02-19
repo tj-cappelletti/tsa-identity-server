@@ -34,6 +34,9 @@ namespace Tsa.IdentityServer.Web
 
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
+            if(Configuration["DOCKER_CONTAINER"] != null && Configuration["DOCKER_CONTAINER"] == "Y")
+                app.UseCors("AnyOrigin");
+
             app.UseStaticFiles();
 
             app.UseRouting();
