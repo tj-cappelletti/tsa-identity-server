@@ -14,8 +14,8 @@ namespace Tsa.IdentityServer.Web
     public class Startup
     {
         private const string CreateDatabaseArgumentKey = "CREATE_DB";
-        private const string DatabaseSeedSourceKey = "DB_SEED_SOURCE";
         private const string DatabaseSeedLocationKey = "DB_SEED_SOURCE_LOCATION";
+        private const string DatabaseSeedSourceKey = "DB_SEED_SOURCE";
 
         public IConfiguration Configuration { get; set; }
 
@@ -34,9 +34,6 @@ namespace Tsa.IdentityServer.Web
 
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
-            if(Configuration["DOCKER_CONTAINER"] != null && Configuration["DOCKER_CONTAINER"] == "Y")
-                app.UseCors("AnyOrigin");
-
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -54,6 +51,17 @@ namespace Tsa.IdentityServer.Web
         {
             var identityServerConnectionString = Configuration.GetConnectionString("TsaIdentityServer");
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+
+            if (Configuration["DOCKER_CONTAINER"] != null && Configuration["DOCKER_CONTAINER"] == "Y")
+                services.AddCors(options =>
+                {
+                    options.AddDefaultPolicy(policy =>
+                    {
+                        policy.AllowAnyHeader();
+                        policy.AllowAnyMethod();
+                        policy.AllowAnyOrigin();
+                    });
+                });
 
             services.AddDbContext<TsaIdentityDbContext>(options => options.UseSqlServer(identityServerConnectionString));
 
