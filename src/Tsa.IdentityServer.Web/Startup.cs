@@ -32,6 +32,9 @@ namespace Tsa.IdentityServer.Web
         {
             InitializeDatabase(app);
 
+            if (Configuration["DOCKER_CONTAINER"] != null && Configuration["DOCKER_CONTAINER"] == "Y")
+                app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             app.UseStaticFiles();
@@ -53,15 +56,7 @@ namespace Tsa.IdentityServer.Web
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             if (Configuration["DOCKER_CONTAINER"] != null && Configuration["DOCKER_CONTAINER"] == "Y")
-                services.AddCors(options =>
-                {
-                    options.AddDefaultPolicy(policy =>
-                    {
-                        policy.AllowAnyHeader();
-                        policy.AllowAnyMethod();
-                        policy.AllowAnyOrigin();
-                    });
-                });
+                services.AddCors();
 
             services.AddDbContext<TsaIdentityDbContext>(options => options.UseSqlServer(identityServerConnectionString));
 
