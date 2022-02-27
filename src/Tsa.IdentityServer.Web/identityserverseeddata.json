@@ -86,19 +86,39 @@
     "ApiScopes": [
         {
             "Name": "tsa.submissions.read",
-            "DisplayName": "Display/read submissions"
+            "DisplayName": "Display/read submissions",
+            "UserClaims": [
+                "openid",
+                "profile",
+                "role"
+            ] 
         },
         {
             "Name": "tsa.submissions.create",
-            "DisplayName": "Create submissions"
+            "DisplayName": "Create submissions",
+            "UserClaims": [
+                "openid",
+                "profile",
+                "role"
+            ]
         },
         {
             "Name": "tsa.submissions.coding.read",
-            "DisplayName": "Display/read coding submissions"
+            "DisplayName": "Display/read coding submissions",
+            "UserClaims": [
+                "openid",
+                "profile",
+                "role"
+            ]
         },
         {
             "Name": "tsa.submissions.coding.create",
-            "DisplayName": "Create coding submissions"
+            "DisplayName": "Create coding submissions",
+            "UserClaims": [
+                "openid",
+                "profile",
+                "role"
+            ]
         }
     ],
     "IdentityUsers": [
