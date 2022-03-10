@@ -17,8 +17,8 @@
             "RequireConsent": false,
             "RequirePkce": true,
             "RedirectUris": [
-                "https://tsa-submissions.azurewebsites.net//login",
-                "https://tsa-submissions.azurewebsites.net//signin-oidc"
+                "https://submissions.tsa.local:44300/",
+                "https://api.tsa.local:44300/swagger/oauth2-redirect.html"
             ],
             "AllowPlainTextPkce": false,
             "AllowOfflineAccess": false,
