@@ -350,6 +350,118 @@
     ],
     "IdentityUserRoles": [
         {
+            "UserId": "2004-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2005-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2008-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2009-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2009-902",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2009-903",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2009-904",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2013-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2043-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2057-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2059-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2061-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2061-902",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2063-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2078-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2082-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2084-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2087-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2089-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2098-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2111-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2152-902",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2194-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2196-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2208-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2214-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2216-901",
+            "RoleName": "participant"
+        },
+        {
+            "UserId": "2218-901",
+            "RoleName": "participant"
+        },
+        {
             "UserId": "9999-001",
             "RoleName": "participant"
         },
