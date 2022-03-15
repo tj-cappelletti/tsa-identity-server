@@ -74,6 +74,6 @@ jobs:
     - name: CodeQL Scan as artifact
       uses: actions/upload-artifact@v2
       with:
-        name: sarif
+        name: ${{ matrix.language }}-sarif
         path: ${{ runner.temp }}/codeql
 
