@@ -70,10 +70,21 @@ jobs:
       uses: github/codeql-action/analyze@v1
       with:
         output: ${{ runner.temp }}/codeql
+        
+    - name: Find CodeQL
+      run: |
+        export CODEQL_PATH=$(find /opt/hostedtoolcache/CodeQL -name codeql | head -n 1)
+        $CODEQL_PATH/codeql database interpret-results --format=csv --output=${{ matrix.language }}-results.csv --print-diagnostics-summary --print-metrics-summary /home/runner/work/_temp/codeql_databases/${{ matrix.language }} /home/runner/work/_temp/codeql_databases/${{ matrix.language }}-queries-builtin.qls >> ${{ matrix.language }}_diagnostics
       
     - name: CodeQL Scan as artifact
       uses: actions/upload-artifact@v2
       with:
         name: ${{ matrix.language }}-sarif
         path: ${{ runner.temp }}/codeql
+        
+    - name: CodeQL Scan as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ matrix.language }}-csv
+        path: ${{ matrix.language }}-results.csv
 
