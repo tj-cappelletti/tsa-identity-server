@@ -2,6 +2,33 @@
   "Clients": [
     {
       "Enabled": true,
+      "ClientId": "tsa.submissions.coding.api.swagger",
+      "ProtocolType": "oidc",
+      "RequireClientSecret": false,
+      "ClientName": "TSA Submissions Coding API - Swagger",
+      "RequireConsent": false,
+      "RequirePkce": true,
+      "RedirectUris": [
+        "https://api.tsa.local:44300/swagger/oauth2-redirect.html"
+      ],
+      "AllowPlainTextPkce": false,
+      "AllowOfflineAccess": false,
+      "AllowedGrantTypes": [
+        "authorization_code"
+      ],
+      "AllowedCorsOrigins": [
+        "http://localhost:4200"
+      ],
+      "AllowedScopes": [
+        "openid",
+        "profile",
+        "role",
+        "tsa.submissions.coding.read",
+        "tsa.submissions.coding.create"
+      ]
+    },
+    {
+      "Enabled": true,
       "ClientId": "tsa.submissions.coding.web",
       "ProtocolType": "oidc",
       "RequireClientSecret": false,
