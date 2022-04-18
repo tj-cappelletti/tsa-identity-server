@@ -6,7 +6,7 @@ name: build-application-workflow
 on:
   push:
     paths:
-    - '.github/workflows/**'
+    - '.github/workflows/github-actions.yaml'
     - 'src/**'
 
   pull_request:

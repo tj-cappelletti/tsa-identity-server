@@ -17,7 +17,7 @@
         },
         "Tsa.IdentityServer.Web": {
             "commandName": "Project",
-            "commandLineArgs": "--create_db true --db_seed_source project",
+            "commandLineArgs": "--CREATE_DB true --DB_SEED_SOURCE project",
             "launchBrowser": true,
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"

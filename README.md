@@ -21,7 +21,7 @@ This project is released uner the [MIT License][mit-license].
 [TSA Coding Submissions][tsa-coding-submissions] - A web application that allows participants to submit solutions to the coding challenge
 
 <!-- BADGES -->
-[baw-badge]: https://github.com/tj-cappelletti/tsa-coding-submissions/workflows/build-application-workflow/badge.svg "current status"
+[baw-badge]: https://github.com/tj-cappelletti/tsa-identity-server/actions/workflows/github-actions.yaml/badge.svg "current status"
 [baw-master-branch-badge]: https://github.com/tj-cappelletti/tsa-coding-submissions/workflows/build-application-workflow/badge.svg?branch=master "master branch status"
 [baw-pull-request-badge]: https://github.com/tj-cappelletti/tsa-coding-submissions/workflows/build-application-workflow/badge.svg?event=pull_request
 
