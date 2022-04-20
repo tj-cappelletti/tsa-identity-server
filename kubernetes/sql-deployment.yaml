@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: coding-sql-service
+  labels:
+    app: coding
+    tier: sql
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 1433
+    targetPort: 1433
+  selector:
+    app: coding
+    tier: sql
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coding-sql
+spec:
+  selector:
+    matchLabels:
+      app: coding
+      tier: sql
+  template:
+    metadata:
+      labels:
+        app: coding
+        tier: sql
+    spec:
+      terminationGracePeriodSeconds: 30
+      securityContext:
+        fsGroup: 10001
+      containers:
+      - name: coding-sql
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+        - name: SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: coding-secret
+              key: password
+        - name: ACCEPT_EULA
+          value: "Y"
+        resources:
+          limits:
+            memory: "2Gi"
+            cpu: "1.0"
+        ports:
+        - containerPort: 1433
+        livenessProbe:
+          tcpSocket:
+            port: 1433
+          initialDelaySeconds: 10
+          periodSeconds: 60
+        readinessProbe:
+          tcpSocket:
+            port: 1433
+          initialDelaySeconds: 30
+          periodSeconds: 5
+        volumeMounts:
+        - name: mssqldb
+          mountPath: /var/opt/mssql
+      initContainers:
+      - name: coding-sql-permission-fix
+        image: busybox
+        command: ["/bin/chown","10001:0", "/data"]
+        volumeMounts:
+        - name: mssqldb
+          mountPath: /data
+      volumes:
+      - name: mssqldb
+        persistentVolumeClaim:
+          claimName: coding-sql-pvc
