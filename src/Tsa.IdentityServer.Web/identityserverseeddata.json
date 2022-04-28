@@ -62,15 +62,6 @@
   "ApiResources": [
     {
       "Scopes": [
-        "tsa.submissions.read",
-        "tsa.submissions.create"
-      ],
-      "Enabled": true,
-      "Name": "tsa.submissions",
-      "DisplayName": "TSA Submissions API"
-    },
-    {
-      "Scopes": [
         "tsa.submissions.coding.read",
         "tsa.submissions.coding.create"
       ],
@@ -80,14 +71,6 @@
     }
   ],
   "ApiScopes": [
-    {
-      "Name": "tsa.submissions.read",
-      "DisplayName": "Display/read submissions"
-    },
-    {
-      "Name": "tsa.submissions.create",
-      "DisplayName": "Create submissions"
-    },
     {
       "Name": "tsa.submissions.coding.read",
       "DisplayName": "Display/read coding submissions"

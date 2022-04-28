@@ -72,6 +72,11 @@ namespace Tsa.IdentityServer.Web.Configuration
                 _logger.LogInformation("Creating IdentityServer API Scope {apiScopes}", apiScope.Name);
 
                 _configurationDbContext.ApiScopes.Add(apiScope.ToEntity());
+
+                apiScope.UserClaims.Add("role");
+                apiScope.UserClaims.Add("email");
+                apiScope.UserClaims.Add("profile");
+                apiScope.UserClaims.Add("openid");
             }
         }
 

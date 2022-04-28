@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: coding-identity-service
+  labels:
+    app: coding
+    tier: identity
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    name: http
+  - port: 443
+    name: https
+  selector:
+    app: coding
+    tier: api
+# This is to assign a static IP
+# This will need to be changed for production use
+status:
+  loadBalancer:
+    ingress:
+    - ip: 172.16.0.71
