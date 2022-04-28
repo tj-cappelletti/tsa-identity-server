@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using IdentityServer4.EntityFramework.DbContexts;
+using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +14,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Tsa.IdentityServer.Web.DataContexts;
+using ApiResource = IdentityServer4.Models.ApiResource;
+using ApiScope = IdentityServer4.Models.ApiScope;
+using Client = IdentityServer4.Models.Client;
+using IdentityResource = IdentityServer4.Models.IdentityResource;
+using Secret = IdentityServer4.Models.Secret;
 
 namespace Tsa.IdentityServer.Web.Configuration
 {
@@ -55,11 +61,25 @@ namespace Tsa.IdentityServer.Web.Configuration
         {
             foreach (var apiResource in apiResources)
             {
-                if (_configurationDbContext.ApiResources.Any(ar => ar.Name == apiResource.Name)) continue;
+                var apiResourceEntity = _configurationDbContext.ApiResources.SingleOrDefault(ar => ar.Name == apiResource.Name);
 
-                _logger.LogInformation("Creating IdentityServer API Resource {apiResource}", apiResource.Name);
+                if (apiResourceEntity == null)
+                {
+                    _logger.LogInformation("Creating IdentityServer API Resource {apiResource}", apiResource.Name);
+                    apiResourceEntity = _configurationDbContext.ApiResources.Add(apiResource.ToEntity()).Entity;
+                }
 
-                _configurationDbContext.ApiResources.Add(apiResource.ToEntity());
+                if (apiResourceEntity.Scopes.All(ars => ars.Scope != "role"))
+                    apiResourceEntity.Scopes.Add(new ApiResourceScope { ApiResourceId = apiResourceEntity.Id, Scope = "role" });
+
+                if (apiResourceEntity.Scopes.All(ars => ars.Scope != "email"))
+                    apiResourceEntity.Scopes.Add(new ApiResourceScope { ApiResourceId = apiResourceEntity.Id, Scope = "email" });
+
+                if (apiResourceEntity.Scopes.All(ars => ars.Scope != "profile"))
+                    apiResourceEntity.Scopes.Add(new ApiResourceScope { ApiResourceId = apiResourceEntity.Id, Scope = "profile" });
+
+                if (apiResourceEntity.Scopes.All(ars => ars.Scope != "openid"))
+                    apiResourceEntity.Scopes.Add(new ApiResourceScope { ApiResourceId = apiResourceEntity.Id, Scope = "openid" });
             }
         }
 
@@ -72,11 +92,6 @@ namespace Tsa.IdentityServer.Web.Configuration
                 _logger.LogInformation("Creating IdentityServer API Scope {apiScopes}", apiScope.Name);
 
                 _configurationDbContext.ApiScopes.Add(apiScope.ToEntity());
-
-                apiScope.UserClaims.Add("role");
-                apiScope.UserClaims.Add("email");
-                apiScope.UserClaims.Add("profile");
-                apiScope.UserClaims.Add("openid");
             }
         }
 
@@ -118,7 +133,7 @@ namespace Tsa.IdentityServer.Web.Configuration
 
             if (!_configurationDbContext.IdentityResources.Any(ir => ir.Name == openIdIdentityResource.Name))
                 _configurationDbContext.IdentityResources.Add(roleIdentityResource);
-                
+
             _configurationDbContext.SaveChanges();
         }
 
