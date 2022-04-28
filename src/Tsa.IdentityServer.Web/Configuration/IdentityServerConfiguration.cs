@@ -70,16 +70,30 @@ namespace Tsa.IdentityServer.Web.Configuration
                 }
 
                 if (apiResourceEntity.Scopes.All(ars => ars.Scope != "role"))
+                {
+                    _logger.LogInformation("Adding 'role' scope to IdentityServer API Resource {apiResource}", apiResource.Name);
                     apiResourceEntity.Scopes.Add(new ApiResourceScope { ApiResourceId = apiResourceEntity.Id, Scope = "role" });
+                }
 
                 if (apiResourceEntity.Scopes.All(ars => ars.Scope != "email"))
+                {
+                    _logger.LogInformation("Adding 'email' scope to IdentityServer API Resource {apiResource}", apiResource.Name);
                     apiResourceEntity.Scopes.Add(new ApiResourceScope { ApiResourceId = apiResourceEntity.Id, Scope = "email" });
+                }
 
                 if (apiResourceEntity.Scopes.All(ars => ars.Scope != "profile"))
+                {
+                    _logger.LogInformation("Adding 'profile' scope to IdentityServer API Resource {apiResource}", apiResource.Name);
                     apiResourceEntity.Scopes.Add(new ApiResourceScope { ApiResourceId = apiResourceEntity.Id, Scope = "profile" });
+                }
 
                 if (apiResourceEntity.Scopes.All(ars => ars.Scope != "openid"))
+                {
+                    _logger.LogInformation("Adding 'openid' scope to IdentityServer API Resource {apiResource}", apiResource.Name);
                     apiResourceEntity.Scopes.Add(new ApiResourceScope { ApiResourceId = apiResourceEntity.Id, Scope = "openid" });
+                }
+
+                _configurationDbContext.SaveChanges();
             }
         }
 
