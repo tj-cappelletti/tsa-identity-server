@@ -232,14 +232,6 @@ namespace Tsa.IdentityServer.Web.Configuration
             // that needs to connect to an existing database
             switch (_configurationSource)
             {
-#if DEBUG
-                // Project should only be available when the DEBUG flag is set
-                // This is to help safeguard production from having testing
-                // settings and credentials published
-                case ConfigurationSource.Project:
-                    identityServerSeedDataJson = File.ReadAllText("identityserverseeddata.json");
-                    break;
-#endif
                 case ConfigurationSource.SystemStorage:
                     identityServerSeedDataJson = File.ReadAllText(_configurationLocation);
                     break;
