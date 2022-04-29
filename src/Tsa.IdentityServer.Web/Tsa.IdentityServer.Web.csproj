@@ -7,6 +7,7 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <UserSecretsId>9ed79e40-765f-4600-88e4-39d694f8041f</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileRunArguments>-v $(MSBuildProjectDirectory)..\..\..\data:/data:ro</DockerfileRunArguments>
   </PropertyGroup>
 
   <ItemGroup>

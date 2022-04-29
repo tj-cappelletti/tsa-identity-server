@@ -4,8 +4,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
-#TODO: This ideally should not be here and is only needed for VS debugging
-COPY ["Tsa.IdentityServer.Web/identityserverseeddata.json", "/data/"]
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
