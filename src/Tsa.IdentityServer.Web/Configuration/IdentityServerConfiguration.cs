@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using IdentityServer4.EntityFramework.DbContexts;
-using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Builder;
@@ -14,11 +13,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Tsa.IdentityServer.Web.DataContexts;
-using ApiResource = IdentityServer4.Models.ApiResource;
-using ApiScope = IdentityServer4.Models.ApiScope;
-using Client = IdentityServer4.Models.Client;
-using IdentityResource = IdentityServer4.Models.IdentityResource;
-using Secret = IdentityServer4.Models.Secret;
 
 namespace Tsa.IdentityServer.Web.Configuration
 {
@@ -61,37 +55,10 @@ namespace Tsa.IdentityServer.Web.Configuration
         {
             foreach (var apiResource in apiResources)
             {
-                var apiResourceEntity = _configurationDbContext.ApiResources.SingleOrDefault(ar => ar.Name == apiResource.Name);
+                if (_configurationDbContext.ApiResources.Any(a => a.Name == apiResource.Name)) continue;
 
-                if (apiResourceEntity == null)
-                {
-                    _logger.LogInformation("Creating IdentityServer API Resource {apiResource}", apiResource.Name);
-                    apiResourceEntity = _configurationDbContext.ApiResources.Add(apiResource.ToEntity()).Entity;
-                }
-
-                if (apiResourceEntity.UserClaims.All(arc => arc.Type != "role"))
-                {
-                    _logger.LogInformation("Adding 'role' claim to IdentityServer API Resource {apiResource}", apiResource.Name);
-                    apiResourceEntity.UserClaims.Add(new ApiResourceClaim { ApiResourceId = apiResourceEntity.Id, Type = "role" });
-                }
-
-                if (apiResourceEntity.UserClaims.All(arc => arc.Type != "email"))
-                {
-                    _logger.LogInformation("Adding 'email' claim to IdentityServer API Resource {apiResource}", apiResource.Name);
-                    apiResourceEntity.UserClaims.Add(new ApiResourceClaim { ApiResourceId = apiResourceEntity.Id, Type = "email" });
-                }
-
-                if (apiResourceEntity.UserClaims.All(arc => arc.Type != "profile"))
-                {
-                    _logger.LogInformation("Adding 'profile' claim to IdentityServer API Resource {apiResource}", apiResource.Name);
-                    apiResourceEntity.UserClaims.Add(new ApiResourceClaim { ApiResourceId = apiResourceEntity.Id, Type = "profile" });
-                }
-
-                if (apiResourceEntity.UserClaims.All(arc => arc.Type != "openid"))
-                {
-                    _logger.LogInformation("Adding 'openid' claim to IdentityServer API Resource {apiResource}", apiResource.Name);
-                    apiResourceEntity.UserClaims.Add(new ApiResourceClaim { ApiResourceId = apiResourceEntity.Id, Type = "openid" });
-                }
+                _logger.LogInformation("Creating IdentityServer API Resource {apiResource}", apiResource.Name);
+                _configurationDbContext.ApiResources.Add(apiResource.ToEntity());
 
                 _configurationDbContext.SaveChanges();
             }
@@ -101,11 +68,34 @@ namespace Tsa.IdentityServer.Web.Configuration
         {
             foreach (var apiScope in apiScopes)
             {
+                apiScope.UserClaims ??= new List<string>();
+
+                apiScope.UserClaims.Add("role");
+                apiScope.UserClaims.Add("family_name");
+                apiScope.UserClaims.Add("given_name");
+                apiScope.UserClaims.Add("middle_name");
+                apiScope.UserClaims.Add("nickname");
+                apiScope.UserClaims.Add("preferred_username");
+                apiScope.UserClaims.Add("profile");
+                apiScope.UserClaims.Add("picture");
+                apiScope.UserClaims.Add("website");
+                apiScope.UserClaims.Add("gender");
+                apiScope.UserClaims.Add("birthdate");
+                apiScope.UserClaims.Add("zoneinfo");
+                apiScope.UserClaims.Add("locale");
+                apiScope.UserClaims.Add("updated_at");
+                apiScope.UserClaims.Add("email");
+                apiScope.UserClaims.Add("email_verified");
+                apiScope.UserClaims.Add("name");
+                apiScope.UserClaims.Add("sub");
+
                 if (_configurationDbContext.ApiScopes.Any(a => a.Name == apiScope.Name)) continue;
 
                 _logger.LogInformation("Creating IdentityServer API Scope {apiScopes}", apiScope.Name);
 
                 _configurationDbContext.ApiScopes.Add(apiScope.ToEntity());
+
+                _configurationDbContext.SaveChanges();
             }
         }
 
@@ -165,6 +155,8 @@ namespace Tsa.IdentityServer.Web.Configuration
 
                 if (!identityResult.Succeeded) throw new Exception(identityResult.Errors.First().Description);
             }
+
+            _configurationDbContext.SaveChanges();
         }
 
         private void AddIdentityServerUserRoles(IEnumerable<IdentityUserRole> identityUserRoles)
@@ -185,6 +177,8 @@ namespace Tsa.IdentityServer.Web.Configuration
 
                 if (!identityResult.Succeeded) throw new Exception(identityResult.Errors.First().Description);
             }
+
+            _configurationDbContext.SaveChanges();
         }
 
         private void AddIdentityServerUsers(IEnumerable<IdentityUser> identityUsers)
@@ -202,6 +196,8 @@ namespace Tsa.IdentityServer.Web.Configuration
 
                 if (!identityResult.Succeeded) throw new Exception(identityResult.Errors.First().Description);
             }
+
+            _configurationDbContext.SaveChanges();
         }
 
         public void ApplyDatabaseMigrations()
