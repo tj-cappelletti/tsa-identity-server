@@ -69,28 +69,28 @@ namespace Tsa.IdentityServer.Web.Configuration
                     apiResourceEntity = _configurationDbContext.ApiResources.Add(apiResource.ToEntity()).Entity;
                 }
 
-                if (apiResourceEntity.Scopes.All(ars => ars.Scope != "role"))
+                if (apiResourceEntity.UserClaims.All(arc => arc.Type != "role"))
                 {
-                    _logger.LogInformation("Adding 'role' scope to IdentityServer API Resource {apiResource}", apiResource.Name);
-                    apiResourceEntity.Scopes.Add(new ApiResourceScope { ApiResourceId = apiResourceEntity.Id, Scope = "role" });
+                    _logger.LogInformation("Adding 'role' claim to IdentityServer API Resource {apiResource}", apiResource.Name);
+                    apiResourceEntity.UserClaims.Add(new ApiResourceClaim { ApiResourceId = apiResourceEntity.Id, Type = "role" });
                 }
 
-                if (apiResourceEntity.Scopes.All(ars => ars.Scope != "email"))
+                if (apiResourceEntity.UserClaims.All(arc => arc.Type != "email"))
                 {
-                    _logger.LogInformation("Adding 'email' scope to IdentityServer API Resource {apiResource}", apiResource.Name);
-                    apiResourceEntity.Scopes.Add(new ApiResourceScope { ApiResourceId = apiResourceEntity.Id, Scope = "email" });
+                    _logger.LogInformation("Adding 'email' claim to IdentityServer API Resource {apiResource}", apiResource.Name);
+                    apiResourceEntity.UserClaims.Add(new ApiResourceClaim { ApiResourceId = apiResourceEntity.Id, Type = "email" });
                 }
 
-                if (apiResourceEntity.Scopes.All(ars => ars.Scope != "profile"))
+                if (apiResourceEntity.UserClaims.All(arc => arc.Type != "profile"))
                 {
-                    _logger.LogInformation("Adding 'profile' scope to IdentityServer API Resource {apiResource}", apiResource.Name);
-                    apiResourceEntity.Scopes.Add(new ApiResourceScope { ApiResourceId = apiResourceEntity.Id, Scope = "profile" });
+                    _logger.LogInformation("Adding 'profile' claim to IdentityServer API Resource {apiResource}", apiResource.Name);
+                    apiResourceEntity.UserClaims.Add(new ApiResourceClaim { ApiResourceId = apiResourceEntity.Id, Type = "profile" });
                 }
 
-                if (apiResourceEntity.Scopes.All(ars => ars.Scope != "openid"))
+                if (apiResourceEntity.UserClaims.All(arc => arc.Type != "openid"))
                 {
-                    _logger.LogInformation("Adding 'openid' scope to IdentityServer API Resource {apiResource}", apiResource.Name);
-                    apiResourceEntity.Scopes.Add(new ApiResourceScope { ApiResourceId = apiResourceEntity.Id, Scope = "openid" });
+                    _logger.LogInformation("Adding 'openid' claim to IdentityServer API Resource {apiResource}", apiResource.Name);
+                    apiResourceEntity.UserClaims.Add(new ApiResourceClaim { ApiResourceId = apiResourceEntity.Id, Type = "openid" });
                 }
 
                 _configurationDbContext.SaveChanges();
