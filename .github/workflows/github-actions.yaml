@@ -99,6 +99,7 @@ jobs:
             --tag $DOCKER_REPO/tsa/coding/submissions/identity:${{ needs.semver.outputs.releaseLabel }} \
             --tag $DOCKER_REPO/tsa/coding/submissions/identity:${{ needs.semver.outputs.majorMinorReleaseLabel }} \
             --tag $DOCKER_REPO/tsa/coding/submissions/identity:${{ needs.semver.outputs.majorReleaseLabel }} \
+            --tag $DOCKER_REPO/tsa/coding/submissions/identity:latest \
             --file src/Tsa.IdentityServer.Web/Dockerfile \
             src/
 
@@ -131,3 +132,4 @@ jobs:
           docker push $DOCKER_REPO/tsa/coding/submissions/identity:${{ needs.semver.outputs.releaseLabel }}
           docker push $DOCKER_REPO/tsa/coding/submissions/identity:${{ needs.semver.outputs.majorMinorReleaseLabel }}
           docker push $DOCKER_REPO/tsa/coding/submissions/identity:${{ needs.semver.outputs.majorReleaseLabel }}
+          docker push $DOCKER_REPO/tsa/coding/submissions/identity:latest
