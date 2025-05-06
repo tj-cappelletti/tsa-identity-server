@@ -1,4 +1,10 @@
-# TSA Identity Server
+# TSA Identity Server - Archived
+**This project is no longer being actively worked on.**
+
+The complexities that came with running IdentityServer without a propper UI (which is locked behind a pay wall) provided to be far too time consuming.
+Most TSA competitions run 2 to 4 hours so security, authentication, and authorization needs to be strong enough to avoid any obsscure attempts to break into the application.
+The reality is it's faster to complete the compeition then trying to hack it.
+
 ![baw-badge]
 
 This project is part of a larger solution built for the Technology Student Association (TSA) [High School Coding][tsa-hs-competitions] competition.
